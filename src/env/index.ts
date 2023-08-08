@@ -2,7 +2,6 @@ import { config } from 'dotenv'
 import { z } from 'zod'
 
 if (process.env.NODE_ENV === 'test') {
-  console.log('Loading test environment...')
   config({ path: '.env.test' })
 } else {
   config()
@@ -11,8 +10,9 @@ if (process.env.NODE_ENV === 'test') {
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
   DATABASE_URL: z.string(),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
   DATABASE_URL_TEST: z.string(),
-  PORT: z.number().optional().default(3333),
+  PORT: z.coerce.number().optional().default(3333),
 })
 
 const _env = envSchema.safeParse(process.env)
