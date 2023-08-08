@@ -1,0 +1,14 @@
+#Dependencies
+
+node_modules
+
+#DataBASE
+db/*.db
+
+#Enviroment
+.env
+.env.test
+
+
+#Build
+build
