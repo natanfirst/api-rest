@@ -7,12 +7,9 @@ export const config: Knex.Config = {
   connection:
     env.DATABASE_CLIENT === 'sqlite'
       ? {
-          filename:
-            process.env.NODE_ENV === 'test'
-              ? env.DATABASE_URL_TEST
-              : env.DATABASE_URL,
+          filename: env.DATABASE_URL,
         }
-      : env.DATABASE_CLIENT,
+      : env.DATABASE_URL,
   migrations: {
     extension: 'ts',
     directory: './db/migrations',
